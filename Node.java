@@ -17,6 +17,12 @@ public class Node {
         this.cargo = cargo;
         // default value is fine for Node.next
     }
+
+    public Node( Object cargo, Node nextNode) {
+        this( cargo);
+        this.nextNode = nextNode;
+    }
+
     public Node( Object cargo, Node nextNode, Node previousNode) {
         this( cargo);
         this.nextNode = nextNode;
@@ -68,6 +74,14 @@ public class Node {
     public Object setCargo( Object newValue) {
         Object saveForReturn = cargo;
         cargo = newValue;
+        return saveForReturn;
+    }
+
+    //inspired by Jeff's idea
+    public Node linkTwo( Node nextNode) {
+        Node saveForReturn = this.getNextNode();
+        nextNode.setPreviousNode( this);
+        setNextNode( nextNode);
         return saveForReturn;
     }
 }
